@@ -1,0 +1,23 @@
+
+SNOWFLAKE_SAMPLE_TABLE = 'table'
+
+SQL_INSERT_STATEMENT = f"INSERT INTO {SNOWFLAKE_SAMPLE_TABLE} VALUES ('name', %(id)s)"
+print([SQL_INSERT_STATEMENT % {"id": n} for n in range(0, 10)])
+
+#same as
+
+SQL_INSERT_STATEMENT = f"INSERT INTO %(SNOWFLAKE_SAMPLE_TABLE)s VALUES ('name', %(id)s)"
+print([SQL_INSERT_STATEMENT % {"SNOWFLAKE_SAMPLE_TABLE":SNOWFLAKE_SAMPLE_TABLE, "id": n} for n in range(0, 10)])
+
+#same as
+
+SQL_INSERT_STATEMENT = "INSERT INTO {SNOWFLAKE_SAMPLE_TABLE} VALUES ('name', {id})"
+print([SQL_INSERT_STATEMENT.format(**{"SNOWFLAKE_SAMPLE_TABLE": SNOWFLAKE_SAMPLE_TABLE, "id": n}) for n in range(0, 10)])
+
+#same as
+
+SQL_INSERT_STATEMENT = "INSERT INTO {} VALUES ('name', {})"
+print([SQL_INSERT_STATEMENT.format(SNOWFLAKE_SAMPLE_TABLE, n) for n in range(0, 10)])
+
+
+2022-11-29
